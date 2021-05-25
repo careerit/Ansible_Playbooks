@@ -39,8 +39,17 @@
     unarchive:
       src: '{{ tomcat_url }}'
       dest: /opt/tomcat
-      remote_src: yes
-      extra_opts: [--strip-components=1]
+      remote_src: yes   
+
+  - name: download
+    get_url:
+      url: '{{ tomcat_url }}'
+      dest: /opt/tomcat/tomcat.zip
+  - name: extract
+    unarchive:
+      src: /opt/tomcat/tomcat.zip
+      dest: /opt/tomcat/
+
 
   - name: Change ownership
     file:
