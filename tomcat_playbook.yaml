@@ -35,6 +35,12 @@
       state: directory
       mode: 0755
 
+  - name: download & unarchive
+    unarchive:
+      src: '{{ tomcat_url }}'
+      dest: /opt/tomcat
+      remote_src: yes   
+
   - name: download
     get_url:
       url: '{{ tomcat_url }}'
