@@ -15,8 +15,11 @@
 
   - name: install JDK 11
     apt:
-      name: openjdk-11-jdk
+      name: "{{ item }}"
       state: present
+    loop:
+      - openjdk-11-jdk
+      - unzip
 
   - name: add tomcat group
     group:
@@ -39,8 +42,7 @@
     unarchive:
       src: '{{ tomcat_url }}'
       dest: /opt/tomcat
-      remote_src: yes
-      extra_opts: [--strip-components=1]
+      remote_src: yes      
 
   - name: Change ownership
     file:
